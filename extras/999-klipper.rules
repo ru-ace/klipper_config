@@ -1,2 +1,4 @@
 ## rule to restart klipper when the printer is connected via usb
-SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="614e", ACTION=="add", RUN+="/usr/bin/sudo -u ace /bin/sh -c '/bin/echo RESTART > /tmp/printer'"
+#SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="614e", ACTION=="add", RUN+="/usr/bin/sudo -u ace /bin/sh -c '/bin/echo RESTART > /tmp/printer'"
+# kklipper has memory leak, so i prefer restart it as service
+SUBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="614e", ACTION=="add", RUN+="/usr/bin/sudo /bin/systemctl restart klipper"
